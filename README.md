@@ -32,9 +32,9 @@ sudo apt install -y python3-rpi.gpio
 ## 接线：按第一步的接线表接好树莓派和 GenX320；
 ## 打开两个终端窗口（树莓派上）：
 ### 终端 1：运行 GenX320 触发检测代码：
-   # python3 genx320_continuous_trigger.pyy
+  python3 genx320_continuous_trigger.pyy
 ### 终端 2：运行树莓派触发信号生成代码：
-   # python3 rpi5_trigger_generator.py
+  python3 rpi5_trigger_generator.py
 ## 选择触发模式：
       在终端 2 输入 1（按键触发），按回车；
       按 s 键，终端 2 会打印 “已发送触发脉冲”；
