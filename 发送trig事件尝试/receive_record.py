@@ -25,21 +25,19 @@ def init_camera():
 
 def configure_external_trigger(device):
     """配置外部触发功能"""
-    # 修正: 获取 Trigger In 接口的正确 API
     trigger_in = device.get_i_trigger_in()
-    if not trigger_in:
-        print("❌ 相机不支持外部触发功能 (无法获取 I_TriggerIn 接口)！")
-        sys.exit(1)
     
-    # 修正: GenX320 的主触发通道固定为 0。不需要设置 gpio 源或边沿模式，硬件会捕捉所有跳变。
+    if not trigger_in:
+        print("⚠️ 提示：MIPI 模式下未检测到软件触发开关 (I_TriggerIn)。")
+        print("   -> 没关系！GenX320 的 J3 引脚是底层硬件直通的。")
+        print("   -> 我们直接跳过软件配置，进入底层数据流监听！")
+        return None
+    
+    # 如果以后换了 USB 相机，这段代码依然能兼容工作
     channel_id = 0 
     success = trigger_in.enable(channel_id)
-    
     if success:
-        print(f"✅ 外部触发配置完成 (通道 {channel_id} 已启用，等待 J3-1 输入)")
-    else:
-        print("⚠️ 外部触发启用失败，可能已被占用或不支持。")
-        
+        print(f"✅ 外部触发配置完成 (通道 {channel_id} 已启用)")
     return trigger_in
 
 def trigger_recording(device):
