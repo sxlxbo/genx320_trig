@@ -51,7 +51,7 @@ def configure_external_trigger(device):
 def trigger_recording(device, trigger_in):
     """等待触发信号，触发后录制事件数据"""
     # 录制参数配置
-    record_duration = 5  # 触发后录制5秒（可自定义）
+    record_duration = 30  # 触发后录制30秒（可自定义）
     save_dir = "./trigger_records"  # 录制文件保存目录
     os.makedirs(save_dir, exist_ok=True)  # 确保目录存在
     # 生成带时间戳的文件名，避免覆盖
