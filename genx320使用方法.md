@@ -7,7 +7,7 @@ metavision_viewer
 
 
 # 录制
-metavision_viewer -o wenjianming.raw      然后按q键或者eac键即可，不能按ctrl+c这样终止程序，文件应该没有保存
+metavision_viewer -o wenjianming.raw      按空格键开始录制，然后按空格键便停止录制了
 
 
 # 播放
